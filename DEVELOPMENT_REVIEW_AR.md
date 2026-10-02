@@ -8,6 +8,18 @@
 
 المصدر: [MDN localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)؛ التخزين قد يفشل أو يتغير مع origin، لذلك لم نعد الحفظ مزامنة أو نسخة احتياطية.
 
-مراحل تالية غير منفذة: export/import بنسخةschema واختبار حفظ فاشل لكل عمليات الدفتر، مقارنة ثلاث بطاقات مختارة، مصدر إعلانات مصرح به فقط إذا أصبح مطلوبًا. النسخة الأولى تعمل محليًا ولا تنشر خدمات عقارية أو أسعار سوق؛ لا استضافة خدمة أو نشر بيانات مستخدم.
+مراحل تالية للنسخة الأولى كانت export/import بنسخةschema ومقارنة ثلاث بطاقات؛ نُفذت هذه الشريحة في المتابعة أدناه. مصدر إعلانات مصرح به فقط إذا أصبح مطلوبًا ما زال اقتراحًا. التطبيق يعمل محليًا ولا ينشر خدمات عقارية أو أسعار سوق؛ لا استضافة خدمة أو نشر بيانات مستخدم.
 
 مراجعة مستقلة لاحقة كشفت مسار استبدال البيانات التالفة بعد أول تعديل؛ أُضيف حارس readFailed، وأعيد اختبار الواجهة عبر فسادJSON ثم إضافة/تفضيل. النسخة القديمة بقيت كما هي والتعديل للجلسة فقط.
+
+## شريحة النقل والمقارنة — 2 أكتوبر 2026
+
+الأساس `ecccf095`؛ الفرع `codex/aqarmisr-portability-2026-10-02`. صار JSON export/import بالصيغة1، بحد200 عرض و512KiB محسوبًا ببايتاتUTF-8. فحص كامل قبل المعاينة يشترط الحقول المحددة وأنواعها ومعرّفات فريدة؛ لا استيراد جزئي ولا تحويل نص السعر إلى رقم. اختيار ملف لا يكتب التخزين. يحتفظ التطبيق بنسخة سابقة في الذاكرة ويعرض زر تنزيلها قبل checkbox اعتماد الاستبدال. raw السابق متاح للتنزيل كما هو، حتى عند فسادJSON. تبقى البيانات التالفة محفوظة، وأي استيراد في هذه الحالة للجلسة فقط. فشل الحفظ يبقي الدفتر الحالي، وتغير التخزين في نافذة أخرى يرفض الاستبدال. قراءات الملف المتأخرة وتعديل الدفتر يلغي المعاينة القديمة.
+
+جدول المقارنة يقبل حتى3 عروض بيع أو حتى3 عروض إيجار شهري، مع السعر والمساحة وسعر المتر ووحدة الشهر الظاهرة. رفض النوع المختلط والعرض الرابع لا يغير الاختيار. حذف عرض يزيله من المقارنة؛ استيراد دفتر جديد يفرغ الاختيار.
+
+مصادر التصميم الأولية: [MDN File API](https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications) لاختيار ملف المستخدم وقراءة حجمه، [Blob.size](https://developer.mozilla.org/en-US/docs/Web/API/Blob/size) لحجم البايتات، و[JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) لتحويلJSON فقط؛ التحقق البنيوي والدلالي مستقل عن نجاح parsing. لا طلب شبكي أو مكتبات runtime جديدة.
+
+التحقق المحلي: `npm test` نجح **12/12**، ويختبر core واستيراد `app.mjs` الحقيقي وتسجيل الأحداث عبر DOM/storage fixtures خارجية فقط، دون استبدال helpers أو logic التطبيق. يشمل export→تفريغ→import مع كل الحقول والمفضلة، preview دون كتابة، download للـbackup قبل approval، schema/duplicate/size/type rejection، cancel، quota، concurrent tab، corrupt raw ثم import/favorite، اختيار المقارنة وحدودها ووحداتها، وقراءة async قديمة. `node --check app.mjs` و`node --check core.mjs` و`git diff --check` نجحت. فُحص الفرق النهائي، ثم قُرئت وطُبقت integration-impact-review. هذا اختبار DOM محلي، وليس دليل تنزيل أو layout في متصفح حقيقي؛ root يجري فحصEdge عند التسليم.
+
+مسارات Integration & Impact: index module→file change→importProperties→معاينة بلاwrite→checkbox+اعتماد→setItem أوجلسة محمية→render؛ export/backup button→Blob→download؛ card compare button→compareProperties→جدول بوحدات الشهر. API القديمةparseProperties/validateProperty/filterProperties محفوظة. فجوات الشريحة: لا رفع أو sync أو تشفير، ونسخة الذاكرة مؤقتة، ونجاح بدء browser download لا يثبت الاحتفاظ بالملف في جهاز المستخدم. اختبار المتصفح الحقيقي لهذه الشريحة يبقى غير متحقق حتى فحصroot.

@@ -47,6 +47,51 @@
           ><button type="submit">إضافة العقار</button>
         </form>
       </section>
+      <section aria-labelledby="transfer-title">
+        <h2 id="transfer-title">نقل الدفتر ونسخة احتياطية</h2>
+        <p>
+          ملف JSON بالصيغة رقم 1، حتى 200 عقار و512 كيلوبايت. الاستيراد يستبدل
+          الدفتر كاملًا بعد المعاينة والتأكيد.
+        </p>
+        <div class="toolbar">
+          <button id="export-properties" type="button">
+            تنزيل الدفتر الحالي
+          </button>
+          <label
+            >اختر ملفًا للمعاينة<input
+              id="import-file"
+              type="file"
+              accept=".json,application/json"
+          /></label>
+        </div>
+        <div id="import-preview" aria-live="polite"></div>
+        <p id="backup-note">
+          لا توجد نسخة ما قبل الاستيراد بعد. التنزيل يحفظ نسخة تختار مكانها على
+          جهازك.
+        </p>
+        <div class="toolbar">
+          <button id="download-backup" type="button" disabled>
+            تنزيل نسخة ما قبل الاستيراد
+          </button>
+          <button id="download-saved" type="button" disabled>
+            تنزيل البيانات المحفوظة السابقة كما هي
+          </button>
+        </div>
+        <p>
+          <label class="check"
+            ><input id="confirm-replace" type="checkbox" />أوافق على استبدال
+            الدفتر كاملًا بالعروض المعروضة في المعاينة.</label
+          >
+        </p>
+        <div class="toolbar">
+          <button id="apply-import" type="button" disabled>
+            اعتماد الاستبدال
+          </button>
+          <button id="cancel-import" type="button" class="secondary">
+            إلغاء المعاينة
+          </button>
+        </div>
+      </section>
       <section aria-labelledby="browse-title">
         <h2 id="browse-title">العقارات المسجلة</h2>
         <div class="filters">
@@ -73,6 +118,15 @@
         <p id="status" role="status"></p>
         <p id="count"></p>
         <div id="results" tabindex="-1" class="cards"></div>
+      </section>
+      <section aria-labelledby="comparison-title">
+        <h2 id="comparison-title">مقارنة عروض مختارة</h2>
+        <div
+          id="comparison"
+          class="comparison"
+          tabindex="0"
+          aria-label="جدول مقارنة عروض العقارات"
+        ></div>
       </section>
       <footer>
         السعر لكل متر أداة مقارنة حسابية. تختلف شروط البيع والإيجار؛ قارن عروض

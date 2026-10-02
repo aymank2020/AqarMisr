@@ -144,3 +144,33 @@ a {
   align-items: center;
   flex-wrap: wrap;
 }
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.cards button {
+  margin-block-start: 8px;
+}
+.comparison {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+caption {
+  text-align: start;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+th,
+td {
+  padding: 12px;
+  border: 1px solid #dce6dc;
+  text-align: start;
+  min-width: 140px;
+  overflow-wrap: anywhere;
+}
+th {
+  background: #edf4e8;
+}
