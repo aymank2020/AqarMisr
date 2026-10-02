@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-02T18:49:28.324Z",
+  "source_sha": "27510ad1bd20a9741cfafda6774476960d9025f8",
+  "source_sha_provenance": "operator supplied; not inferred from browser",
+  "status": "passed",
+  "mode": "smoke",
+  "real_browser": "Microsoft Edge headless",
+  "checks": [
+    "real form -> export download with original favorite"
+  ],
+  "page_errors": [],
+  "unexpected_dialogs": []
+}

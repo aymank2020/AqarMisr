@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-02T18:41:45.973Z",
+  "source_sha": "27510ad1bd20a9741cfafda6774476960d9025f8",
+  "status": "passed",
+  "real_browser": "Microsoft Edge headless",
+  "checks": [
+    "real form -> export download with original favorite",
+    "preview does not mutate; real prior backup and raw download",
+    "confirmed import -> persistence/reload/favorite, HTML shown as text",
+    "real comparison: monthly units; fourth/mixed type rejected; phone no overflow",
+    "export -> replacement -> real file reimport roundtrip",
+    "version/duplicate/201/malformed/oversize rejection does not change saved book",
+    "local mutation invalidates stale preview and confirmation",
+    "quota failure keeps the prior UI and saved book",
+    "saved book changed after preview -> apply rejects instead of overwriting",
+    "corrupt raw download works and import+favorite remain session-only",
+    "desktop no horizontal page overflow"
+  ],
+  "page_errors": [],
+  "unexpected_dialogs": []
+}
