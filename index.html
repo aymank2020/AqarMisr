@@ -1,4 +1,84 @@
-<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>عقار مصر · دفتر المقارنة</title><link rel="stylesheet" href="style.css">
-<body><a class="skip" href="#results">انتقل إلى العقارات</a><main><header><p class="eyebrow">أدوات محلية · بلا حساب</p><h1>عقار مصر</h1><p>اجمع العقارات التي وجدتها وقارنها. بياناتك على هذا المتصفح فقط.</p><p class="notice">أدخل عروضك بنفسك؛ لا توجد إعلانات أو أسعار سوق منشورة هنا. الإيجار بالجنيه لكل شهر.</p></header>
-<section aria-labelledby="add-title"><h2 id="add-title">أضف عقارًا</h2><form id="property-form"><label>العنوان<input name="title" required maxlength="100"></label><label>الموقع<input name="location" required maxlength="100"></label><label>نوع العرض<select name="kind"><option value="sale">بيع</option><option value="rent">إيجار شهري</option></select></label><label>السعر بالجنيه<input name="price" type="number" min="1" max="1000000000000" step="1" required></label><label>المساحة بالمتر المربع<input name="area" type="number" min="0.01" max="1000000" step="any" required></label><button type="submit">إضافة العقار</button></form></section>
-<section aria-labelledby="browse-title"><h2 id="browse-title">العقارات المسجلة</h2><div class="filters"><label>بحث<input id="query" type="search" placeholder="العنوان أو الموقع"></label><label>العروض<select id="kind"><option value="">الكل</option><option value="sale">بيع</option><option value="rent">إيجار شهري</option></select></label><label>الترتيب<select id="sort"><option value="newest">الأحدث</option><option value="price">السعر الأقل</option></select></label><label class="check"><input id="favorites" type="checkbox">المفضلة فقط</label></div><p id="status" role="status"></p><p id="count"></p><div id="results" tabindex="-1" class="cards"></div></section><footer>السعر لكل متر أداة مقارنة حسابية. تختلف شروط البيع والإيجار؛ قارن عروض النوع نفسه. حد الدفتر 200 عقار.</footer></main><script type="module" src="app.mjs"></script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>عقار مصر · دفتر المقارنة</title
+  ><link rel="stylesheet" href="style.css" />
+  <body>
+    <a class="skip" href="#results">انتقل إلى العقارات</a>
+    <main>
+      <header>
+        <p class="eyebrow">أدوات محلية · بلا حساب</p>
+        <h1>عقار مصر</h1>
+        <p>اجمع العقارات التي وجدتها وقارنها. بياناتك على هذا المتصفح فقط.</p>
+        <p class="notice">
+          أدخل عروضك بنفسك؛ لا توجد إعلانات أو أسعار سوق منشورة هنا. الإيجار
+          بالجنيه لكل شهر.
+        </p>
+      </header>
+      <section aria-labelledby="add-title">
+        <h2 id="add-title">أضف عقارًا</h2>
+        <form id="property-form">
+          <label>العنوان<input name="title" required maxlength="100" /></label
+          ><label
+            >الموقع<input name="location" required maxlength="100" /></label
+          ><label
+            >نوع العرض<select name="kind">
+              <option value="sale">بيع</option>
+              <option value="rent">إيجار شهري</option>
+            </select></label
+          ><label
+            >السعر بالجنيه<input
+              name="price"
+              type="number"
+              min="1"
+              max="1000000000000"
+              step="1"
+              required /></label
+          ><label
+            >المساحة بالمتر المربع<input
+              name="area"
+              type="number"
+              min="0.01"
+              max="1000000"
+              step="any"
+              required /></label
+          ><button type="submit">إضافة العقار</button>
+        </form>
+      </section>
+      <section aria-labelledby="browse-title">
+        <h2 id="browse-title">العقارات المسجلة</h2>
+        <div class="filters">
+          <label
+            >بحث<input
+              id="query"
+              type="search"
+              placeholder="العنوان أو الموقع" /></label
+          ><label
+            >العروض<select id="kind">
+              <option value="">الكل</option>
+              <option value="sale">بيع</option>
+              <option value="rent">إيجار شهري</option>
+            </select></label
+          ><label
+            >الترتيب<select id="sort">
+              <option value="newest">الأحدث</option>
+              <option value="price">السعر الأقل</option>
+            </select></label
+          ><label class="check"
+            ><input id="favorites" type="checkbox" />المفضلة فقط</label
+          >
+        </div>
+        <p id="status" role="status"></p>
+        <p id="count"></p>
+        <div id="results" tabindex="-1" class="cards"></div>
+      </section>
+      <footer>
+        السعر لكل متر أداة مقارنة حسابية. تختلف شروط البيع والإيجار؛ قارن عروض
+        النوع نفسه. حد الدفتر 200 عقار.
+      </footer>
+    </main>
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>
